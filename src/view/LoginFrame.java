@@ -1,8 +1,13 @@
 package view;
 
+import controller.LoginController;
+import persistence.Role;
+import persistence.User;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class LoginFrame extends JFrame {
     private JTextField txtUsername;
@@ -11,6 +16,7 @@ public class LoginFrame extends JFrame {
     private JPasswordField pswdtxtPassword;
     private JLabel lblPassword;
     private JPanel pnlLogin;
+    private LoginController loginController = new LoginController();
 
     public LoginFrame() {
         super("Login | Vehicle Management");
@@ -22,10 +28,19 @@ public class LoginFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // sprawdzic czy sie zgadza login
-                // User user = loginController.login(username, password)
-                // jesli sie zgadza, to dostaniesy obiekt klasy Benutzer
-                // jesli Benutzer.rola = admin to utworz nowy MainFrame(rola)
+
+                User user = loginController.Login(txtUsername.getText(), pswdtxtPassword.getText());
+                if (user == null) {
+                    pswdtxtPassword.setText("");
+                    showMessageDialog(pnlLogin, "Username or Password is invalid", "Login", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                MainFrame mainFrame = new MainFrame(user);
+                mainFrame.setVisible(true);
+                mainFrame.pack();
+
+                setVisible(false);
 
             }
         };

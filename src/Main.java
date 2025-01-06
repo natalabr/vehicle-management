@@ -10,7 +10,7 @@ public class Main {
 
         LoginFrame loginFrame = new LoginFrame();
 
-        loginFrame.setSize(200, 100);
+        loginFrame.setSize(300, 200);
         loginFrame.setLocationRelativeTo(null);
 
         loginFrame.setVisible(true);

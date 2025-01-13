@@ -5,8 +5,8 @@ import persistence.Role;
 import persistence.User;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class LoginFrame extends JFrame {
@@ -41,10 +41,18 @@ public class LoginFrame extends JFrame {
                 mainFrame.pack();
 
                 setVisible(false);
-
             }
         };
 
+        KeyListener keyLogin = new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnLogin.doClick();
+                }
+            }
+        };
+
+        btnLogin.addKeyListener(keyLogin);
         btnLogin.addActionListener(actionLogin);
     }
 }

@@ -7,4 +7,8 @@ public class User {
     public String firstname;
     public String username;
     public String password;
+
+    public String toString() {
+        return lastname + " " + firstname;
+    }
 }
